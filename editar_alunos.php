@@ -7,8 +7,9 @@ if(isset($_REQUEST['atualizar']))
     try 
     {
         include 'includes/conexao.php';
-
-        $sql = "UPDATE alunos SET nome = ?, data_nascimento = ?, sexo = ?,
+        if(isset($_REQUEST['atualizar']))
+        
+    {    $sql = "UPDATE alunos SET nome = ?, data_nascimento = ?, sexo = ?,
                                   genero = ?, cpf = ?, cidade = ?, estado = ?,
                                   bairro = ?, rua = ?, cep = ?
                  WHERE id = ? ";
@@ -28,8 +29,9 @@ if(isset($_REQUEST['atualizar']))
         $stmt->execute();
     }
 
-       if(isset($_REQUEST['excluir']))    
-       {
+    if(isset($_REQUEST['excluir'])) 
+      
+    {
          $stmt = $conexao ->prepare("DELETE FROM aluno WHERE id = ?");
          $stmt ->bindParam(1, $_REQUEST['id_aluno']);
          $stmt ->execute();
